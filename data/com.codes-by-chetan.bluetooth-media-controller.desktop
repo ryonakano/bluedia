@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Bluetooth Media Controller
+GenericName=Media Controller
+Comment=Control Bluetooth media playback with style
+Categories=AudioVideo;Audio;Player;GTK;
+Exec=com.codes-by-chetan.bluetooth-media-controller
+Icon=com.codes-by-chetan.bluetooth-media-controller
+Terminal=false
+Type=Application
+Keywords=Bluetooth;Media;Controller;Music;Player;Audio;
+Version=1.0.0
+X-GNOME-Gettext-Domain=com.codes-by-chetan.bluetooth-media-controller
+X-GNOME-UsesNotifications=true

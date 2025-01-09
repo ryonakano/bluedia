@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.codes-by-chetan.bluetooth-media-controller</id>
+  <metadata_license>MIT</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Bluetooth Media Controller</name>
+  <summary>Control Bluetooth media playback with style</summary>
+  
+  <description>
+    <p>
+      A modern GTK-based Bluetooth media controller that provides:
+    </p>
+    <ul>
+      <li>Intuitive media playback controls (play/pause, next, previous)</li>
+      <li>Real-time album art display with Spotify integration</li>
+      <li>Shuffle and repeat mode controls</li>
+      <li>Live progress tracking with time display</li>
+      <li>Dark theme support</li>
+      <li>Elegant user interface with smooth animations</li>
+    </ul>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluetooth-media-controller.png</image>
+      <caption>Main application window showing media controls</caption>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="1.0.0" date="2024-01-09">
+      <description>
+        <p>Initial release with core features:</p>
+        <ul>
+          <li>Media playback controls</li>
+          <li>Album art display</li>
+          <li>Spotify integration</li>
+          <li>Progress tracking</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
+  <developer_name>Chetan Mohite</developer_name>
+  <url type="homepage">https://github.com/codes-by-chetan/bluetooth-media-controller</url>
+  <url type="bugtracker">https://github.com/codes-by-chetan/bluetooth-media-controller/issues</url>
+
+  <custom>
+    <value key="x-appcenter-color-primary">#0088cc</value>
+    <value key="x-appcenter-color-primary-text">#ffffff</value>
+    <value key="x-appcenter-suggested-price">0</value>
+  </custom>
+
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+</component>
