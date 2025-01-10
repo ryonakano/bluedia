@@ -54,6 +54,8 @@
   </custom>
 
   <requires>
-    <display_length compare="ge">360</display_length>
+    <display_length compare="ge">400</display_length>
+    <id>org.bluez</id>
+    <version>5.70</version>
   </requires>
 </component>
