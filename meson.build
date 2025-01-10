@@ -1,51 +1,115 @@
-project('com.codes-by-chetan.bluetooth-media-controller',
-        version: '1.0.0',
-        meson_version: '>= 0.50.0'
-)
+project('com.github.chetanmohite.bluetooth-media-controller', 'c')
 
-python = import('python')
-python_installation = python.find_installation('python3',
-    required: true,
-    modules: [
-        'gi',
-        'requests'
-    ]
-)
+# Find Python3 and venv module
+python = find_program('python3', required: true)
+venv_module = run_command(python, '-c', 'import venv', check: false)
+if venv_module.returncode() != 0
+    error('Python venv module not found. Please install python3-venv')
+endif
 
-dependency('gtk+-3.0', version: '>= 3.0')
-dependency('glib-2.0')
-dependency('gobject-2.0')
+# Create virtual environment in build directory
+message('Creating virtual environment...')
+venv_dir = meson.current_build_dir() / 'venv'
+venv_result = run_command(python, '-m', 'venv', venv_dir, check: false)
+if venv_result.returncode() != 0
+    error('Failed to create virtual environment: ' + venv_result.stderr().strip())
+endif
 
-# Dependencies from build-app.js
-run_command('pip3', 'install', 'PyGObject', 'requests', check: true)
+# Get venv paths
+venv_python = venv_dir / 'bin' / 'python'
+venv_pip = venv_dir / 'bin' / 'pip'
 
-# Install Python script
+# Upgrade pip and install wheel
+message('Upgrading pip and installing wheel...')
+run_command(venv_python, '-m', 'pip', 'install', '--upgrade', 'pip', 'wheel', check: true)
+
+# Install PyInstaller and dependencies
+message('Installing PyInstaller and dependencies...')
+run_command(venv_pip, 'install', 'pyinstaller', 'PyGObject', 'requests', check: true)
+
+# Create spec file content
+spec_content = '''# -*- mode: python -*-
+import sys
+import os
+from PyInstaller.utils.hooks import collect_submodules
+
+block_cipher = None
+
+hiddenimports = collect_submodules('gi') + ['requests']
+
+a = Analysis(['@0@'],
+             binaries=[],
+             datas=[('@1@', '.')],
+             hiddenimports=hiddenimports,
+             hookspath=[],
+             runtime_hooks=[],
+             excludes=[],
+             win_no_prefer_redirects=False,
+             win_private_assemblies=False,
+             cipher=block_cipher,
+             noarchive=False)
+
+pyz = PYZ(a.pure, a.zipped_data,
+          cipher=block_cipher)
+
+exe = EXE(pyz,
+          a.scripts,
+          a.binaries,
+          a.zipfiles,
+          a.datas,
+          [],
+          name='bluetooth-media-controller',
+          debug=False,
+          bootloader_ignore_signals=False,
+          strip=False,
+          upx=True,
+          runtime_tmpdir=None,
+          console=False)
+'''.format(meson.source_root() / 'src' / 'bluetooth-media-controller.py',
+           meson.source_root() / 'data' / 'icons' / 'bluetooth-media-controller.png')
+
+# Write spec file in build directory
+spec_file = meson.current_build_dir() / 'bluetooth-media-controller.spec'
+run_command('sh', '-c', 'echo "' + spec_content + '" > ' + spec_file, check: true)
+
+# Build executable using PyInstaller
+message('Building executable with PyInstaller...')
+pyinstaller_result = run_command(venv_python, '-m', 'PyInstaller', '--clean', 
+                                 '--workpath=' + meson.current_build_dir() / 'build',
+                                 '--distpath=' + meson.current_build_dir() / 'dist',
+                                 spec_file, check: false)
+if pyinstaller_result.returncode() != 0
+    error('PyInstaller failed: ' + pyinstaller_result.stderr().strip())
+endif
+
+# Define project name and installation directories
+name = 'bluetooth-media-controller'
+prefix = get_option('prefix')
+bindir = join_paths(prefix, get_option('bindir'))
+datadir = join_paths(prefix, get_option('datadir'))
+icondir = join_paths(datadir, 'icons', 'hicolor')
+
+# Install the executable from build/dist directory
 install_data(
-    'src/bluetooth-media-controller.py',
-    install_dir: get_option('bindir'),
-    rename: 'com.codes-by-chetan.bluetooth-media-controller'
+    meson.current_build_dir() / 'dist' / 'bluetooth-media-controller',
+    install_dir: bindir,
+    install_mode: 'rwxr-xr-x'
 )
 
-# Install desktop file
+# Install the desktop file
 install_data(
-    'data/com.codes-by-chetan.bluetooth-media-controller.desktop',
-    install_dir: join_paths(get_option('datadir'), 'applications')
-)
-
-# Install AppStream metadata
-install_data(
-    'data/com.codes-by-chetan.bluetooth-media-controller.appdata.xml',
-    install_dir: join_paths(get_option('datadir'), 'metainfo')
+    meson.source_root() / 'data' / 'bluetooth-media-controller.desktop',
+    install_dir: join_paths(datadir, 'applications')
 )
 
 # Install icon
 install_data(
-    'data/icons/com.codes-by-chetan.bluetooth-media-controller.png',
-    install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', '128x128', 'apps')
+    meson.source_root() / 'data' / 'icons' / 'bluetooth-media-controller.png',
+    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor', '128x128', 'apps')
 )
 
-# Install license
+# Install the appdata file
 install_data(
-    'LICENSE',
-    install_dir: join_paths(get_option('datadir'), 'doc', meson.project_name())
+    meson.source_root() / 'data' / 'bluetooth-media-controller.appdata.xml',
+    install_dir: join_paths(datadir, 'metainfo')
 )

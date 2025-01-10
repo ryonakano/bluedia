@@ -15,7 +15,7 @@ CACHE_DURATION = 3600  # Cache duration in seconds
 
 def create_window_icon():
     try:
-        with open('bluetooth-media-controller.png', 'rb') as file:
+        with open('/usr/local/share/icons/hicolor/128x128/apps/bluetooth-media-controller.png', 'rb') as file:
             icon_bytes = file.read()
         loader = GdkPixbuf.PixbufLoader()
         loader.write(icon_bytes)

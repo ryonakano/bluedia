@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.codes-by-chetan.bluetooth-media-controller</id>
+  <id>com.codes-by-chetan.bluetooth-controller</id>
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <name>Bluetooth Media Controller</name>
