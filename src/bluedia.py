@@ -13,17 +13,6 @@ from gi.repository import Gtk, GLib, GdkPixbuf, Gdk
 TOKEN_FILE_PATH = "spotify_token.json"
 CACHE_DURATION = 3600  # Cache duration in seconds
 
-def create_window_icon():
-    try:
-        with open('/usr/local/share/icons/hicolor/128x128/apps/bluetooth-media-controller.png', 'rb') as file:
-            icon_bytes = file.read()
-        loader = GdkPixbuf.PixbufLoader()
-        loader.write(icon_bytes)
-        loader.close()
-        return loader.get_pixbuf()
-    except Exception as e:
-        print("Error in creating icon:", e)
-        return None
 
 class AlbumArtCache:
     def __init__(self):
@@ -145,13 +134,8 @@ def save_token(access_token, expiry):
 
 class BluetoothControlWindow(Gtk.Window):
     def __init__(self):
-        super().__init__(title="Bluetooth Media Controller")
+        super().__init__(title="Bluedia")
         self.set_default_size(300, 400)
-        
-        # Set the window icon
-        icon = create_window_icon()
-        if icon:
-            self.set_icon(icon)
 
         self.last_track_details = {}
         self.access_token = None

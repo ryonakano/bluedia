@@ -1,13 +1,13 @@
 [Desktop Entry]
-Name=Bluetooth Media Controller
+Name=Bluedia
 GenericName=Media Controller
 Comment=Control Bluetooth media playback with style
 Categories=AudioVideo;Audio;Player;GTK;
-Exec=/usr/local/bin/bluetooth-media-controller
-Icon=/usr/local/share/icons/hicolor/128x128/apps/bluetooth-media-controller.png
+Exec=bluedia
+Icon=bluedia
 Terminal=false
 Type=Application
 Keywords=Bluetooth;Media;Controller;Music;Player;Audio;
 Version=1.0.0
-X-GNOME-Gettext-Domain=com.codes-by-chetan.bluetooth-controller
+X-GNOME-Gettext-Domain=io.codes-by-chetan.bluedia
 X-GNOME-UsesNotifications=true

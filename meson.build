@@ -1,4 +1,9 @@
-project('com.github.chetanmohite.bluetooth-media-controller', 'c')
+project('io.github.codes-by-chetan.bluedia', 'c')
+
+# Check if required dependencies are available
+cairo_dep = dependency('cairo', required: true)
+gobject_dep = dependency('gobject-2.0', required: true)
+
 
 # Find Python3 and venv module
 python = find_program('python3', required: true)
@@ -58,18 +63,18 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='bluetooth-media-controller',
+          name='bluedia',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
           console=False)
-'''.format(meson.source_root() / 'src' / 'bluetooth-media-controller.py',
-           meson.source_root() / 'data' / 'icons' / 'bluetooth-media-controller.png')
+'''.format(meson.source_root() / 'src' / 'bluedia.py',
+           meson.source_root() / 'data' / 'icons' / 'bluedia.png')
 
 # Write spec file in build directory
-spec_file = meson.current_build_dir() / 'bluetooth-media-controller.spec'
+spec_file = meson.current_build_dir() / 'bluedia.spec'
 run_command('sh', '-c', 'echo "' + spec_content + '" > ' + spec_file, check: true)
 
 # Build executable using PyInstaller
@@ -83,7 +88,7 @@ if pyinstaller_result.returncode() != 0
 endif
 
 # Define project name and installation directories
-name = 'bluetooth-media-controller'
+name = 'bluedia'
 prefix = get_option('prefix')
 bindir = join_paths(prefix, get_option('bindir'))
 datadir = join_paths(prefix, get_option('datadir'))
@@ -91,25 +96,25 @@ icondir = join_paths(datadir, 'icons', 'hicolor')
 
 # Install the executable from build/dist directory
 install_data(
-    meson.current_build_dir() / 'dist' / 'bluetooth-media-controller',
+    meson.current_build_dir() / 'dist' / 'bluedia',
     install_dir: bindir,
     install_mode: 'rwxr-xr-x'
 )
 
 # Install the desktop file
 install_data(
-    meson.source_root() / 'data' / 'bluetooth-media-controller.desktop',
+    meson.source_root() / 'data' / 'bluedia.desktop',
     install_dir: join_paths(datadir, 'applications')
 )
 
 # Install icon
 install_data(
-    meson.source_root() / 'data' / 'icons' / 'bluetooth-media-controller.png',
+    meson.source_root() / 'data' / 'icons' / 'bluedia.png',
     install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor', '128x128', 'apps')
 )
 
 # Install the appdata file
 install_data(
-    meson.source_root() / 'data' / 'bluetooth-media-controller.appdata.xml',
+    meson.source_root() / 'data' / 'bluedia.xml',
     install_dir: join_paths(datadir, 'metainfo')
 )

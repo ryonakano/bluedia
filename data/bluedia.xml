@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.codes-by-chetan.bluetooth-controller</id>
+  <id>com.github.chetanmohite.bluedia</id>
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
-  <name>Bluetooth Media Controller</name>
+  <name>Bluedia</name>
   <summary>Control Bluetooth media playback with style</summary>
   
   <description>
@@ -44,8 +44,8 @@
   <content_rating type="oars-1.1" />
 
   <developer_name>Chetan Mohite</developer_name>
-  <url type="homepage">https://github.com/codes-by-chetan/bluetooth-media-controller</url>
-  <url type="bugtracker">https://github.com/codes-by-chetan/bluetooth-media-controller/issues</url>
+  <url type="homepage">https://github.com/codes-by-chetan/bluedia</url>
+  <url type="bugtracker">https://github.com/codes-by-chetan/bluedia/issues</url>
 
   <custom>
     <value key="x-appcenter-color-primary">#0088cc</value>
