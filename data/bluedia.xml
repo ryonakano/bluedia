@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>com.github.chetanmohite.bluedia</id>
+  <id>io.github.codes-by-chetan.bluedia</id>
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
   <name>Bluedia</name>
@@ -22,8 +22,20 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluetooth-media-controller.png</image>
-      <caption>Main application window showing media controls</caption>
+      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluedia_track_playing_screenshot.png</image>
+      <caption>Main application window showing media controls while connected device is playing media with an album art from fetched from spotify.</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluedia_track_without_album_art.png</image>
+      <caption>Main application window showing media controls while connected device is playing media but album art not found on spotify.</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluedia_connected_not_playing_any_media.png</image>
+      <caption>Main application window showing media controls while connected device is not playing media.</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://cdn.jsdelivr.net/gh/codes-by-chetan/Images_Server@main/bluedia_no_device_connected.png</image>
+      <caption>Main application window showing media controls while no media player device is connected over bluetooth AVRCP</caption>
     </screenshot>
   </screenshots>
 
@@ -43,7 +55,7 @@
 
   <content_rating type="oars-1.1" />
 
-  <developer_name>Chetan Mohite</developer_name>
+  <developer>Chetan Mohite</developer>
   <url type="homepage">https://github.com/codes-by-chetan/bluedia</url>
   <url type="bugtracker">https://github.com/codes-by-chetan/bluedia/issues</url>
 

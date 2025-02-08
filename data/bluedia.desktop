@@ -9,5 +9,6 @@ Terminal=false
 Type=Application
 Keywords=Bluetooth;Media;Controller;Music;Player;Audio;
 Version=1.0.0
+StartupNotify=true
 X-GNOME-Gettext-Domain=io.codes-by-chetan.bluedia
 X-GNOME-UsesNotifications=true
