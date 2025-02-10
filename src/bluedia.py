@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import gi
 gi.require_version("Gtk", "3.0")
 
@@ -139,6 +140,21 @@ def save_token(access_token, expiry):
     with open(TOKEN_FILE_PATH, 'w') as file:
         json.dump(token_data, file)
     print("DEBUG: Token saved to file.")
+
+
+
+def check_bluez_version():
+    try:
+        output = subprocess.check_output(['bluetoothctl', '--version'], text=True)
+        version = output.strip().split()[-1]  # Gets the version number
+        version_parts = [int(x) for x in version.split('.')]
+        
+        if version_parts[0] < 5 or (version_parts[0] == 5 and version_parts[1] < 70):
+            print(f"Warning: This application requires bluez version 5.70 or higher. Found version {version}")
+            print("Some features may not work correctly.")
+    except Exception as e:
+        print("Warning: Could not determine bluez version.")
+        print("Please ensure you have bluez version 5.70 or higher installed.")
 
 class BluetoothControlWindow(Gtk.Window):
     def __init__(self):
@@ -585,6 +601,8 @@ class BluetoothControlWindow(Gtk.Window):
         self.schedule_update(force=True)
 
 def main():
+    # Add this at the start of your main() function
+    check_bluez_version()
     window = BluetoothControlWindow()
     window.connect("destroy", Gtk.main_quit)
     window.show_all()
