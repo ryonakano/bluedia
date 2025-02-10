@@ -1,64 +1,99 @@
-# Bluetooth Media Controller
+# Bluedia - Bluetooth Media Controller
 
-A Python tool to control Bluetooth audio devices and display the currently playing track with playback controls. It uses `bluetoothctl` to manage Bluetooth connections and interacts with the audio devices.
+Bluedia is a Python-based tool that allows you to control Bluetooth audio playback from your Linux desktop. It provides a GTK interface to interact with Bluetooth audio devices, display track details, and manage playback.
 
 ## Features
 
-- Connect to Bluetooth audio devices
-- Display the currently playing track on connected Bluetooth audio devices
-- Provide basic playback controls: Play, Pause, Next, and Previous
-- Command-line interface for interaction
+- Play, pause, skip, and go back to the previous track
+- Display currently playing track details (title, artist, album)
+- Fetch and display album art from Spotify
+- Show playback progress with a progress bar
+- Supports shuffle and repeat modes
+- Manual refresh button to update track details
+- Debug logging for troubleshooting
 
 ## Prerequisites
 
-Before installing and using this tool, ensure that you have the following prerequisites:
+Ensure you have the following dependencies installed before proceeding:
 
 - Python 3.6+
 - GTK 3
-- BlueZ v5.70 or higher
+- PyGObject
+- BlueZ (v5.70 or higher)
 - Meson (0.50 or newer)
 - Ninja
+- `requests` Python library
+
+To install missing dependencies on Ubuntu, run:
+
+```bash
+sudo apt update && sudo apt install python3-gi gir1.2-gtk-3.0 python3-pip python3-venv meson ninja-build
+pip3 install requests
+```
 
 ## Installation
 
 ### Clone the Repository
 
-Clone the repository to your local machine:
-
 ```bash
-git clone https://github.com/yourusername/bluetooth_media_controller.git
-cd bluetooth_media_controller
+git clone https://github.com/codes-by-chetan/bluedia.git
+cd bluedia
 ```
 
 ### Build and Install
 
 1. Set up the build directory:
 
-```bash
-meson build
-```
+   ```bash
+   meson setup build
+   ```
 
 2. Compile the project:
 
-```bash
-ninja -C build
-```
+   ```bash
+   ninja -C build
+   ```
 
 3. Install the application:
 
+   ```bash
+   sudo ninja -C build install
+   ```
+
+## Running the Application
+
+After installation, launch Bluedia with:
+
 ```bash
-sudo ninja -C build install
+bluedia
 ```
 
-## Post-Installation Steps
+If the command is not found, try logging out and back in or restarting your system to refresh the environment.
 
-After installation, you can run the Bluetooth Media Controller using the following command:
+## Usage Guide
 
-```bash
-bluetooth-media-controller
-```
+### Connecting to a Bluetooth Device
+1. Open your device's Bluetooth settings and connect to your computer.
+2. Ensure media playback control is enabled for the connected device.
+3. Open **Bluedia** to start controlling playback.
 
-If the command is not found, you may need to log out and log back in or restart your system for the PATH to update.
+### Controls
+- **Play/Pause**: Toggle playback.
+- **Next**: Skip to the next track.
+- **Previous**: Go back to the previous track.
+- **Shuffle**: Toggle shuffle mode.
+- **Repeat**: Cycle through repeat modes (off, all, single).
+- **Refresh**: Manually refresh track details.
+
+### Debugging Issues
+If Bluedia does not work correctly, try the following:
+- Ensure your **BlueZ** version is at least **5.70** (`bluetoothctl --version`).
+- Run Bluedia in a terminal to view debug logs:
+  
+  ```bash
+  bluedia
+  ```
+- If the app does not open, check for missing dependencies and reinstall them.
 
 ## Usage
 
@@ -81,19 +116,18 @@ You can customize these commands and extend them as needed.
 
 ## Contributing
 
-If you'd like to contribute to the development of this project, please follow these steps:
+If you'd like to contribute to Bluedia, follow these steps:
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-name`)
-3. Make your changes
-4. Commit your changes (`git commit -am 'Add new feature'`)
-5. Push to the branch (`git push origin feature-name`)
-6. Create a new Pull Request
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Make your changes and commit them.
+4. Push to your branch (`git push origin feature-name`).
+5. Open a pull request.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgments
 
-Thanks to the developers of BlueZ, GTK, and the Python GObject Introspection library for providing the tools to interact with Bluetooth devices and create the user interface.
+Thanks to the developers of BlueZ, GTK, and PyGObject for providing the tools necessary to build this project.
