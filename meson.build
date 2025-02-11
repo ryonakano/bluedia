@@ -36,16 +36,16 @@ configure_file(
 )
 
 # Install desktop file
-install_data('data/io.codes.by.chetan.bluedia.desktop',
+install_data('data/io.codes_by_chetan.bluedia.desktop',
              install_dir: applicationsdir
 )
 
 # Install icons
-install_data('data/icons/io.codes.by.chetan.bluedia.png',
+install_data('data/icons/io.codes_by_chetan.bluedia.png',
              install_dir: join_paths(icondir, '256x256', 'apps')
 )
 
 # Install app metadata
-install_data('data/io.codes.by.chetan.bluedia.xml',
+install_data('data/io.codes_by_chetan.bluedia.xml',
              install_dir: join_paths(datadir, 'metainfo')
 )

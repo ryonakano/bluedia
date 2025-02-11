@@ -1,4 +1,4 @@
-app-id: io.codes.by.chetan.bluedia
+app-id: io.codes_by_chetan.bluedia
 runtime: org.gnome.Platform
 runtime-version: '44'
 sdk: org.gnome.Sdk
