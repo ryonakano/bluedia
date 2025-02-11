@@ -1,0 +1,120 @@
+{
+  "id" : "io.codes.by.chetan.bluedia",
+  "runtime" : "org.gnome.Platform",
+  "runtime-version" : "44",
+  "runtime-commit" : "27a9dc43ac1447fe7efa61946568730a24a2d2147097fba02904ae9c1fcaf8f6",
+  "sdk" : "org.gnome.Sdk",
+  "sdk-commit" : "5ff43b5270907542af1c0998f95c25ad368fde9912b1c9cb878a96106eabeed9",
+  "command" : "bluedia",
+  "modules" : [
+    {
+      "name" : "bluedia",
+      "buildsystem" : "meson",
+      "sources" : [
+        {
+          "path" : ".",
+          "type" : "dir"
+        }
+      ],
+      "modules" : [
+        {
+          "name" : "python3-charset-normalizer",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/db/51/a507c856293ab05cdc1db77ff4bc1268ddd39f29e7dc4919aa497f0adbec/charset_normalizer-2.1.1-py3-none-any.whl",
+              "sha256" : "83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} charset-normalizer"
+          ]
+        },
+        {
+          "name" : "python3-idna",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/fc/34/3030de6f1370931b9dbb4dad48f6ab1015ab1d32447850b9fc94e60097be/idna-3.4-py3-none-any.whl",
+              "sha256" : "90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} idna"
+          ]
+        },
+        {
+          "name" : "python3-urllib3",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/33/cf/8435d5a7159e2a9c83a95896ed596f68cf798005fe107cc655b5c5c14704/urllib3-1.26.20-py2.py3-none-any.whl",
+              "sha256" : "0ed14ccfbf1c30a9072c7ca157e4319b70d65f623e91e7b32fadb2853431016e",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} urllib3"
+          ]
+        },
+        {
+          "name" : "python3-certifi",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/38/fc/bce832fd4fd99766c04d1ee0eead6b0ec6486fb100ae5e74c1d91292b982/certifi-2025.1.31-py3-none-any.whl",
+              "sha256" : "ca78db4565a652026a4db2bcdf68f2fb589ea80d0be70e03929ed730746b84fe",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} certifi"
+          ]
+        },
+        {
+          "name" : "python3-requests",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/cf/e1/2aa539876d9ed0ddc95882451deb57cfd7aa8dbf0b8dbce68e045549ba56/requests-2.29.0-py3-none-any.whl",
+              "sha256" : "e8f3c9be120d3333921d213eef078af392fba3933ab7ed2d1cba3b56f2568c3b",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} requests"
+          ]
+        },
+        {
+          "name" : "python3-pillow",
+          "buildsystem" : "simple",
+          "sources" : [
+            {
+              "url" : "https://files.pythonhosted.org/packages/25/6b/d3c35d207c9c0b6c2f855420f62e64ef43d348e8c797ad1c32b9f2106a19/Pillow-9.5.0-cp310-cp310-manylinux_2_28_x86_64.whl",
+              "sha256" : "85ec677246533e27770b0de5cf0f9d6e4ec0c212a1f89dfc941b64b21226009d",
+              "type" : "file"
+            }
+          ],
+          "build-commands" : [
+            "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pillow"
+          ]
+        }
+      ]
+    }
+  ],
+  "finish-args" : [
+    "--share=network",
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--device=dri",
+    "--socket=pulseaudio",
+    "--talk-name=org.freedesktop.DBus",
+    "--filesystem=host",
+    "--talk-name=org.bluez",
+    "--runtime=org.gnome.Platform//43"
+  ],
+  "source-date-epoch" : 1739265692
+}
