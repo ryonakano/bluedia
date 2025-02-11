@@ -1,5 +1,0 @@
-[Runtime]
-name=io.codes.by.chetan.bluedia.Debug
-
-[ExtensionOf]
-ref=app/io.codes.by.chetan.bluedia/x86_64/master
