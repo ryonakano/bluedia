@@ -1,7 +1,7 @@
 app-id: io.codes_by_chetan.bluedia
-runtime: org.gnome.Platform
-runtime-version: '44'
-sdk: org.gnome.Sdk
+runtime: io.elementary.Platform
+runtime-version: '8'
+sdk: io.elementary.Sdk
 command: bluedia
 
 finish-args:
