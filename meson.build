@@ -1,5 +1,5 @@
 project('bluedia',
-        version: '1.0.0',
+        version: '1.1.0',
         meson_version: '>= 0.50.0'
 )
 
@@ -36,16 +36,16 @@ configure_file(
 )
 
 # Install desktop file
-install_data('data/bluedia.desktop',
+install_data('data/io.codes.by.chetan.bluedia.desktop',
              install_dir: applicationsdir
 )
 
 # Install icons
-install_data('data/icons/bluedia.png',
+install_data('data/icons/io.codes.by.chetan.bluedia.png',
              install_dir: join_paths(icondir, '256x256', 'apps')
 )
 
 # Install app metadata
-install_data('data/bluedia.xml',
+install_data('data/io.codes.by.chetan.bluedia.xml',
              install_dir: join_paths(datadir, 'metainfo')
 )
